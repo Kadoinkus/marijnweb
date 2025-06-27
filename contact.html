@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Marijn Rinck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo"><a href="index.html">Marijn Rinck</a></div>
+    <input type="checkbox" id="toggle">
+    <label for="toggle" class="burger">&#9776;</label>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Over mij</a></li>
+      <li><a href="services.html">Diensten</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="sub-hero">
+    <div class="container">
+      <h1>Contact</h1>
+      <p>Laten we kennismaken en kijken hoe ik jou kan helpen</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Neem contact op</h2>
+        <p>Stuur een bericht zodat we samen kunnen kijken wat jij nodig hebt</p>
+      </div>
+      
+      <div style="display: grid; gap: 3rem; grid-template-columns: 1fr 1fr; align-items: start;" class="fade-in">
+        <div>
+          <form class="contact-form" action="mailto:info@marijnrinck.nl" method="post" enctype="text/plain">
+            <label for="name">Naam *</label>
+            <input type="text" id="name" name="name" required placeholder="Jouw volledige naam">
+
+            <label for="email">E‑mailadres *</label>
+            <input type="email" id="email" name="email" required placeholder="naam@bedrijf.nl">
+
+            <label for="company">Bedrijf</label>
+            <input type="text" id="company" name="company" placeholder="Naam van jouw bedrijf">
+
+            <label for="phone">Telefoonnummer</label>
+            <input type="tel" id="phone" name="phone" placeholder="06 - 12 34 56 78">
+
+            <label for="subject">Onderwerp</label>
+            <select id="subject" name="subject">
+              <option value="">Kies een onderwerp</option>
+              <option value="kennismaking">Kennismakingsgesprek</option>
+              <option value="starterspakket">Starterspakket</option>
+              <option value="basispakket">Basispakket</option>
+              <option value="pluspakket">Pluspakket</option>
+              <option value="premiumpakket">Premiumpakket</option>
+              <option value="specifieke-vraag">Specifieke juridische vraag</option>
+              <option value="anders">Anders</option>
+            </select>
+
+            <label for="message">Bericht *</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Vertel me over jouw situatie en hoe ik je kan helpen..."></textarea>
+
+            <button type="submit" class="btn primary">Verstuur bericht</button>
+          </form>
+        </div>
+        
+        <div>
+          <div class="cards">
+            <div class="card">
+              <h3>Direct contact</h3>
+              <p><strong>E-mail:</strong> info@marijnrinck.nl</p>
+              <p><strong>Telefoon:</strong> Beschikbaar op afspraak</p>
+              <p><strong>Reactietijd:</strong> Binnen 24 uur</p>
+            </div>
+            
+            <div class="card">
+              <h3>Kennismakingsgesprek</h3>
+              <p>Een vrijblijvend gesprek van 30 minuten waarin we jouw situatie bespreken en kijken hoe ik je het beste kan ondersteunen.</p>
+              <p><strong>Kosten:</strong> Gratis</p>
+              <p><strong>Locatie:</strong> Online of op locatie</p>
+            </div>
+            
+            <div class="card">
+              <h3>Werkgebied</h3>
+              <p>Ik werk voornamelijk online en kom graag naar je toe voor persoonlijke gesprekken in de regio Utrecht en omgeving.</p>
+              <p>Voor cliënten elders in Nederland zijn videogesprekken een uitstekend alternatief.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Veelgestelde vragen</h2>
+        <p>Antwoorden op de meest gestelde vragen over mijn dienstverlening</p>
+      </div>
+      <div class="cards fade-in">
+        <div class="card">
+          <h3>Hoe snel krijg ik antwoord?</h3>
+          <p>Ik streef ernaar om binnen 24 uur te reageren op e-mails en berichten. Voor spoedvragen kun je dit aangeven in je bericht.</p>
+        </div>
+        <div class="card">
+          <h3>Wat kosten jouw diensten?</h3>
+          <p>Ik werk met transparante pakketten en vaste tarieven. De kosten worden altijd vooraf besproken, zodat je geen verrassingen krijgt.</p>
+        </div>
+        <div class="card">
+          <h3>Kan ik ook voor een eenmalig advies terecht?</h3>
+          <p>Ja, naast de pakketten bied ik ook eenmalige adviezen aan. We bespreken vooraf de scope en kosten van het advies.</p>
+        </div>
+        <div class="card">
+          <h3>Werk je ook met startups?</h3>
+          <p>Zeker! Ik help graag startende ondernemers met het leggen van een solide juridisch fundament. Het Starterspakket is hier speciaal voor ontwikkeld.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Marijn Rinck. Juridisch advies met hoofd én hart.</p>
+  </footer>
+<script src="script.js"></script>
+</body>
+</html>

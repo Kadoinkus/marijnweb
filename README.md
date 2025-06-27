@@ -1,0 +1,1 @@
+# Marijn Rinck Website\n\nOpen index.html in your browser or Visual Studio Code's Live Server to run the site.\n
