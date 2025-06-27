@@ -443,3 +443,40 @@ function initPackageAccordion() {
 
 // Initialize package accordion when DOM is loaded
 document.addEventListener('DOMContentLoaded', initPackageAccordion);
+
+// FAQ accordion functionality
+function initFAQAccordion() {
+  const faqItems = document.querySelectorAll('.faq-item');
+  
+  faqItems.forEach(item => {
+    const header = item.querySelector('.faq-header');
+    const toggleIcon = item.querySelector('.toggle-icon');
+    
+    header.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+      
+      // Close all other items
+      faqItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+          const otherIcon = otherItem.querySelector('.toggle-icon');
+          if (otherIcon) {
+            otherIcon.textContent = '+';
+          }
+        }
+      });
+      
+      // Toggle current item
+      if (isActive) {
+        item.classList.remove('active');
+        toggleIcon.textContent = '+';
+      } else {
+        item.classList.add('active');
+        toggleIcon.textContent = '−';
+      }
+    });
+  });
+}
+
+// Initialize FAQ accordion when DOM is loaded
+document.addEventListener('DOMContentLoaded', initFAQAccordion);
