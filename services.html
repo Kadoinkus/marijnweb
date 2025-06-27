@@ -33,6 +33,9 @@
   <section class="section">
     <div class="container">
       <div class="section-header">
+        <div class="intro-badge variant-blue">
+          <span>⚡ Werkwijze</span>
+        </div>
         <h2>Mijn werkwijze</h2>
         <p>Drie kernprincipes die mijn aanpak kenmerken</p>
       </div>
@@ -56,67 +59,138 @@
   <section class="section">
     <div class="container">
       <div class="section-header">
+        <div class="intro-badge variant-green">
+          <span>📦 Pakketten</span>
+        </div>
         <h2>Kies het pakket dat bij je past</h2>
         <p>Van startende ondernemer tot gevestigd bedrijf — er is altijd een passende oplossing</p>
       </div>
-      <div class="packages fade-in">
-        <div class="package">
-          <h3>Starterspakket</h3>
-          <p style="color: var(--accent); font-weight: 600; margin-bottom: 1.5rem;">Van idee naar juridisch fundament</p>
-          <ul>
-            <li>Begeleiding bij het vastleggen van de juridische basis</li>
-            <li>Twee op maat gemaakte documenten + uitgebreide toelichting</li>
-            <li>Strategisch adviesgesprek (30 minuten)</li>
-            <li>Praktische checklist: wat moet ik geregeld hebben?</li>
-            <li>10% korting bij overstap naar vervolgpakket</li>
-          </ul>
-          <div style="margin-top: 2rem;">
-            <a href="contact.html" class="btn primary">Meer informatie</a>
+      <div class="packages-accordion fade-in">
+        <div class="package-item" data-package="starter">
+          <div class="package-header">
+            <div class="package-title">
+              <h3>Starterspakket</h3>
+              <p>Van idee naar juridisch fundament</p>
+            </div>
+            <div class="package-price">
+              <span class="price-label">Vanaf</span>
+              <span class="price">€750</span>
+            </div>
+            <div class="package-toggle">
+              <span class="toggle-icon">+</span>
+            </div>
+          </div>
+          <div class="package-content">
+            <div class="package-description">
+              <p style="color: var(--accent); font-weight: 600; margin-bottom: 1.5rem;">Perfect voor startende ondernemers die hun juridische basis willen leggen</p>
+              <ul>
+                <li>Begeleiding bij het vastleggen van de juridische basis</li>
+                <li>Twee op maat gemaakte documenten + uitgebreide toelichting</li>
+                <li>Strategisch adviesgesprek (30 minuten)</li>
+                <li>Praktische checklist: wat moet ik geregeld hebben?</li>
+                <li>10% korting bij overstap naar vervolgpakket</li>
+              </ul>
+              <div class="package-action">
+                <a href="contact.html" class="btn primary">Kies dit pakket</a>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="package">
-          <h3>Basispakket</h3>
-          <p style="color: var(--accent); font-weight: 600; margin-bottom: 1.5rem;">Rust en zekerheid in je werk</p>
-          <ul>
-            <li>Jaarlijkse contractscan en juridische gezondheidscheck</li>
-            <li>2 uur juridisch advies per maand (e-mail, telefoon, video)</li>
-            <li>Snelle reactie bij acute juridische vragen</li>
-            <li>Toegang tot juridische templates en voorbeelddocumenten</li>
-            <li>10% korting op extra werkzaamheden</li>
-          </ul>
-          <div style="margin-top: 2rem;">
-            <a href="contact.html" class="btn primary">Meer informatie</a>
+
+        <div class="package-item" data-package="basis">
+          <div class="package-header">
+            <div class="package-title">
+              <h3>Basispakket</h3>
+              <p>Rust en zekerheid in je werk</p>
+            </div>
+            <div class="package-price">
+              <span class="price-label">Per maand</span>
+              <span class="price">€295</span>
+            </div>
+            <div class="package-toggle">
+              <span class="toggle-icon">+</span>
+            </div>
+          </div>
+          <div class="package-content">
+            <div class="package-description">
+              <p style="color: var(--accent); font-weight: 600; margin-bottom: 1.5rem;">Ideaal voor ondernemers die regelmatige juridische ondersteuning nodig hebben</p>
+              <ul>
+                <li>Jaarlijkse contractscan en juridische gezondheidscheck</li>
+                <li>2 uur juridisch advies per maand (e-mail, telefoon, video)</li>
+                <li>Snelle reactie bij acute juridische vragen</li>
+                <li>Toegang tot juridische templates en voorbeelddocumenten</li>
+                <li>10% korting op extra werkzaamheden</li>
+              </ul>
+              <div class="package-action">
+                <a href="contact.html" class="btn primary">Kies dit pakket</a>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="package">
-          <h3>Pluspakket</h3>
-          <p style="color: var(--accent); font-weight: 600; margin-bottom: 1.5rem;">Groeien met juridische richting</p>
-          <ul>
-            <li>Uitgebreide juridische basischeck en jaarlijks 1 document op maat</li>
-            <li>5 uur juridische ondersteuning per maand</li>
-            <li>Juridische update 2x per jaar afgestemd op jouw branche</li>
-            <li>Spoedvragen binnen 24 uur beantwoord</li>
-            <li>Proactieve signalering van juridische ontwikkelingen</li>
-            <li>15% korting op extra werkzaamheden</li>
-          </ul>
-          <div style="margin-top: 2rem;">
-            <a href="contact.html" class="btn primary">Meer informatie</a>
+
+        <div class="package-item popular" data-package="plus">
+          <div class="package-header">
+            <div class="package-title">
+              <h3>Pluspakket</h3>
+              <p>Groeien met juridische richting</p>
+              <div class="popular-badge">Meest gekozen</div>
+            </div>
+            <div class="package-price">
+              <span class="price-label">Per maand</span>
+              <span class="price">€595</span>
+            </div>
+            <div class="package-toggle">
+              <span class="toggle-icon">+</span>
+            </div>
+          </div>
+          <div class="package-content">
+            <div class="package-description">
+              <p style="color: var(--accent); font-weight: 600; margin-bottom: 1.5rem;">Voor groeiende bedrijven die proactieve juridische ondersteuning willen</p>
+              <ul>
+                <li>Uitgebreide juridische basischeck en jaarlijks 1 document op maat</li>
+                <li>5 uur juridische ondersteuning per maand</li>
+                <li>Juridische update 2x per jaar afgestemd op jouw branche</li>
+                <li>Spoedvragen binnen 24 uur beantwoord</li>
+                <li>Proactieve signalering van juridische ontwikkelingen</li>
+                <li>15% korting op extra werkzaamheden</li>
+              </ul>
+              <div class="package-action">
+                <a href="contact.html" class="btn primary">Kies dit pakket</a>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="package">
-          <h3>Premiumpakket</h3>
-          <p style="color: var(--accent); font-weight: 600; margin-bottom: 1.5rem;">Jouw juridische partner op afstand</p>
-          <ul>
-            <li>Uitgebreide juridische audit en strategische roadmap</li>
-            <li>Kwartaalmeeting voor strategische juridische planning</li>
-            <li>10 uur advies + documentopstelling per maand</li>
-            <li>Prioriteitsbehandeling en directe toegang</li>
-            <li>Samenwerking met HR, directie en andere adviseurs</li>
-            <li>Maandelijkse juridische updates en trendanalyse</li>
-            <li>20% korting op extra werkzaamheden</li>
-          </ul>
-          <div style="margin-top: 2rem;">
-            <a href="contact.html" class="btn primary">Meer informatie</a>
+
+        <div class="package-item" data-package="premium">
+          <div class="package-header">
+            <div class="package-title">
+              <h3>Premiumpakket</h3>
+              <p>Jouw juridische partner op afstand</p>
+            </div>
+            <div class="package-price">
+              <span class="price-label">Per maand</span>
+              <span class="price">€1.195</span>
+            </div>
+            <div class="package-toggle">
+              <span class="toggle-icon">+</span>
+            </div>
+          </div>
+          <div class="package-content">
+            <div class="package-description">
+              <p style="color: var(--accent); font-weight: 600; margin-bottom: 1.5rem;">Voor gevestigde bedrijven die een strategische juridische partner zoeken</p>
+              <ul>
+                <li>Uitgebreide juridische audit en strategische roadmap</li>
+                <li>Kwartaalmeeting voor strategische juridische planning</li>
+                <li>10 uur advies + documentopstelling per maand</li>
+                <li>Prioriteitsbehandeling en directe toegang</li>
+                <li>Samenwerking met HR, directie en andere adviseurs</li>
+                <li>Maandelijkse juridische updates en trendanalyse</li>
+                <li>20% korting op extra werkzaamheden</li>
+              </ul>
+              <div class="package-action">
+                <a href="contact.html" class="btn primary">Kies dit pakket</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -126,6 +200,9 @@
   <section class="section">
     <div class="container">
       <div class="section-header">
+        <div class="intro-badge variant-blue-outline">
+          <span>🔧 Extra diensten</span>
+        </div>
         <h2>Aanvullende diensten</h2>
         <p>Specifieke juridische ondersteuning voor bijzondere situaties</p>
       </div>

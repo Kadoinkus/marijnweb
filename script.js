@@ -406,3 +406,40 @@ const additionalStyles = `
 const styleSheet = document.createElement('style');
 styleSheet.textContent = additionalStyles;
 document.head.appendChild(styleSheet);
+
+// Package accordion functionality
+function initPackageAccordion() {
+  const packageItems = document.querySelectorAll('.package-item');
+  
+  packageItems.forEach(item => {
+    const header = item.querySelector('.package-header');
+    const toggleIcon = item.querySelector('.toggle-icon');
+    
+    header.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+      
+      // Close all other items
+      packageItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+          const otherIcon = otherItem.querySelector('.toggle-icon');
+          if (otherIcon) {
+            otherIcon.textContent = '+';
+          }
+        }
+      });
+      
+      // Toggle current item
+      if (isActive) {
+        item.classList.remove('active');
+        toggleIcon.textContent = '+';
+      } else {
+        item.classList.add('active');
+        toggleIcon.textContent = '−';
+      }
+    });
+  });
+}
+
+// Initialize package accordion when DOM is loaded
+document.addEventListener('DOMContentLoaded', initPackageAccordion);
