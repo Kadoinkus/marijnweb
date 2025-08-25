@@ -507,7 +507,7 @@ function initBadgeShine() {
 // Initialize badge shine when DOM is loaded
 document.addEventListener('DOMContentLoaded', initBadgeShine);
 
-// Before/After Comparison Slider with Draggable Divider
+// Before/After Comparison Slider with Draggable Divider (Mobile Only)
 function initComparisonSlider() {
   const divider = document.getElementById('comparisonDivider');
   const topLayer = document.querySelector('.rinck-side');
@@ -517,9 +517,11 @@ function initComparisonSlider() {
   
   let isDragging = false;
   let containerRect;
+  let isInitialized = false;
   
   // Update the clip-path and divider position based on percentage
   function updateComparison(percentage) {
+    if (window.innerWidth > 768) return; // Only update on mobile
     const rightClip = 100 - percentage;
     topLayer.style.clipPath = `inset(0 ${rightClip}% 0 0)`;
     divider.style.left = `${percentage}%`;
@@ -527,54 +529,83 @@ function initComparisonSlider() {
   
   // Get percentage from mouse/touch position
   function getPercentageFromPosition(clientX) {
-    if (!containerRect) containerRect = container.getBoundingClientRect();
+    containerRect = container.getBoundingClientRect();
     const relativeX = clientX - containerRect.left;
     const percentage = Math.max(0, Math.min(100, (relativeX / containerRect.width) * 100));
     return percentage;
   }
   
   // Mouse events
-  divider.addEventListener('mousedown', (e) => {
+  function handleMouseDown(e) {
+    if (window.innerWidth > 768) return;
     isDragging = true;
-    containerRect = container.getBoundingClientRect();
     document.body.style.cursor = 'ew-resize';
     e.preventDefault();
-  });
+  }
   
-  document.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
+  function handleMouseMove(e) {
+    if (!isDragging || window.innerWidth > 768) return;
     const percentage = getPercentageFromPosition(e.clientX);
     updateComparison(percentage);
-  });
+  }
   
-  document.addEventListener('mouseup', () => {
+  function handleMouseUp() {
+    if (window.innerWidth > 768) return;
     isDragging = false;
     document.body.style.cursor = '';
-    containerRect = null;
-  });
+  }
   
-  // Touch events for mobile
-  divider.addEventListener('touchstart', (e) => {
+  // Touch events
+  function handleTouchStart(e) {
+    if (window.innerWidth > 768) return;
     isDragging = true;
-    containerRect = container.getBoundingClientRect();
     e.preventDefault();
-  });
+  }
   
-  document.addEventListener('touchmove', (e) => {
-    if (!isDragging) return;
+  function handleTouchMove(e) {
+    if (!isDragging || window.innerWidth > 768) return;
     const touch = e.touches[0];
     const percentage = getPercentageFromPosition(touch.clientX);
     updateComparison(percentage);
     e.preventDefault();
-  });
+  }
   
-  document.addEventListener('touchend', () => {
+  function handleTouchEnd() {
+    if (window.innerWidth > 768) return;
     isDragging = false;
-    containerRect = null;
-  });
+  }
   
-  // Set initial state (50%)
-  updateComparison(50);
+  // Initialize events only once
+  function initEvents() {
+    if (isInitialized) return;
+    
+    divider.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+    
+    divider.addEventListener('touchstart', handleTouchStart);
+    document.addEventListener('touchmove', handleTouchMove);
+    document.addEventListener('touchend', handleTouchEnd);
+    
+    isInitialized = true;
+  }
+  
+  // Handle window resize
+  function handleResize() {
+    if (window.innerWidth <= 768) {
+      // Set initial state for mobile
+      updateComparison(50);
+    } else {
+      // Reset mobile styles when switching to desktop
+      topLayer.style.clipPath = '';
+      divider.style.left = '50%';
+    }
+  }
+  
+  // Initialize
+  initEvents();
+  handleResize();
+  window.addEventListener('resize', handleResize);
 }
 
 // Initialize comparison slider when DOM is loaded
