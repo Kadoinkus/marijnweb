@@ -966,7 +966,7 @@ a {
   }
   
   .service-point {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
     flex-direction: column;
     text-align: center;
     gap: 1rem;
@@ -2049,25 +2049,18 @@ footer p {
     scroll-snap-type: x mandatory;
     gap: 1rem;
     padding: 1rem 0 2rem;
-    margin: 0 -1.5rem;
+    margin: 0 0.3rem;
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
     touch-action: pan-x;
   }
   
-  .services-carousel::before,
-  .services-carousel::after {
-    content: '';
-    flex: 0 0 1rem;
-  }
-  
   .services-carousel .service-point {
-    flex: 0 0 85%;
-    max-width: 320px;
-    min-width: 280px;
+    flex: 0 0 100%;
+    width: 100%;
     scroll-snap-align: center;
     flex-direction: column;
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
     cursor: grab;
     user-select: none;
   }
@@ -2090,6 +2083,7 @@ footer p {
     border-radius: 3px;
   }
   
+  
   @keyframes slideInFromRight {
     from {
       opacity: 0;
@@ -2101,14 +2095,6 @@ footer p {
     }
   }
   
-  .services-carousel::-webkit-scrollbar {
-    height: 6px;
-  }
-  
-  .services-carousel::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
-  }
   
   .carousel-nav {
     display: flex;
@@ -2156,6 +2142,13 @@ footer p {
   .carousel-dot.active {
     background: var(--accent);
     transform: scale(1.2);
+  }
+}
+
+/* Hide carousel navigation on desktop */
+@media (min-width: 769px) {
+  .carousel-nav {
+    display: none;
   }
 }
 

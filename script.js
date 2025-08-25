@@ -34,6 +34,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const walk = (x - startX) * 2;
       carousel.scrollLeft = scrollLeft - walk;
     });
+    
+    // Set initial cursor style
+    carousel.style.cursor = 'grab';
   }
   
   initializeServiceCarousel();
@@ -63,11 +66,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const dots = dotsContainer.querySelectorAll('.carousel-dot');
     
     function scrollToCard(index) {
-      const cardWidth = cards[0].offsetWidth + 24; // card width + gap
-      carousel.scrollTo({
-        left: cardWidth * index,
-        behavior: 'smooth'
-      });
+      // On mobile, each card takes full width with gap
+      if (window.innerWidth <= 768) {
+        const cardWidth = cards[0].offsetWidth + 16; // card width + gap
+        carousel.scrollTo({
+          left: cardWidth * index,
+          behavior: 'smooth'
+        });
+      } else {
+        // Desktop behavior
+        const cardWidth = cards[0].offsetWidth + 24; // card width + gap
+        carousel.scrollTo({
+          left: cardWidth * index,
+          behavior: 'smooth'
+        });
+      }
       updateActiveDot(index);
       currentIndex = index;
     }
@@ -91,7 +104,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update active dot on scroll
     carousel.addEventListener('scroll', () => {
-      const cardWidth = cards[0].offsetWidth + 24;
+      let cardWidth;
+      if (window.innerWidth <= 768) {
+        cardWidth = cards[0].offsetWidth + 16; // card width + gap
+      } else {
+        cardWidth = cards[0].offsetWidth + 24;
+      }
       const newIndex = Math.round(carousel.scrollLeft / cardWidth);
       if (newIndex !== currentIndex && newIndex >= 0 && newIndex < cardCount) {
         currentIndex = newIndex;
@@ -101,6 +119,21 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   initializeCarouselNavigation();
+  
+  // Reinitialize carousel on window resize
+  window.addEventListener('resize', () => {
+    initializeServiceCarousel();
+    // Reset to first card on resize to avoid positioning issues
+    const carousel = document.querySelector('.services-carousel');
+    if (carousel) {
+      carousel.scrollTo({ left: 0, behavior: 'smooth' });
+      const firstDot = document.querySelector('.carousel-dot');
+      if (firstDot) {
+        document.querySelectorAll('.carousel-dot').forEach(dot => dot.classList.remove('active'));
+        firstDot.classList.add('active');
+      }
+    }
+  });
   
   // Navbar scroll effect
   const navbar = document.querySelector('.navbar');
