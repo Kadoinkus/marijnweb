@@ -324,7 +324,15 @@ a {
   height: 200%;
   background: linear-gradient(45deg, transparent, rgba(22, 160, 133, 0.1), transparent);
   transform: rotate(45deg);
-  animation: shine 3s infinite;
+  opacity: 0;
+}
+
+.hero-badge:hover::before {
+  animation: shine 0.6s ease-out;
+}
+
+.hero-badge.visible::before {
+  animation: shine 0.6s ease-out;
 }
 
 .hero-badge:hover {
@@ -685,13 +693,30 @@ a {
   height: 200%;
   background: linear-gradient(45deg, transparent, rgba(22, 160, 133, 0.1), transparent);
   transform: rotate(45deg);
-  animation: shine 3s infinite;
+  opacity: 0;
+}
+
+.intro-badge:hover::before {
+  animation: shine 0.6s ease-out;
+}
+
+.intro-badge.visible::before {
+  animation: shine 0.6s ease-out;
 }
 
 @keyframes shine {
-  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-  50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-  100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  0% { 
+    opacity: 0;
+    transform: translateX(-100%) translateY(-100%) rotate(45deg); 
+  }
+  50% { 
+    opacity: 1;
+    transform: translateX(0%) translateY(0%) rotate(45deg); 
+  }
+  100% { 
+    opacity: 0;
+    transform: translateX(100%) translateY(100%) rotate(45deg); 
+  }
 }
 
 .intro-badge:hover span {
@@ -2344,41 +2369,209 @@ footer p {
   }
 }
 
+/* Before/After Comparison Slider */
+.comparison-slider-container {
+  position: relative;
+  width: 480px;
+  height: 600px;
+  margin: 3rem auto;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+}
+
+.comparison-content-static {
+  position: relative;
+  width: 480px;
+  height: 600px;
+}
+
+.comparison-side-static {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 480px;
+  height: 600px;
+  padding: 2.5rem 1.5rem;
+  box-sizing: border-box;
+  border-radius: var(--border-radius-lg);
+}
+
+.traditional-side {
+  background: #fff5f5;
+  border: 2px solid #e74c3c;
+  z-index: 1;
+}
+
+.rinck-side {
+  background: #f0fdf4;
+  border: 2px solid var(--accent);
+  z-index: 2;
+  clip-path: inset(0 50% 0 0); /* Start showing left half */
+  transition: clip-path 0.1s ease;
+}
+
+/* Remove old divider line */
+
+.comparison-side-static h3 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: var(--primary);
+  text-align: center;
+}
+
+.comparison-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.comparison-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  background: rgba(255, 255, 255, 0.8);
+  transition: var(--transition);
+}
+
+.comparison-item .icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.comparison-item div {
+  flex: 1;
+}
+
+.comparison-item strong {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  font-family: var(--font-serif);
+}
+
+.comparison-item p {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Vertical Divider with Drag Handle */
+.comparison-divider {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: 4px;
+  cursor: ew-resize;
+  z-index: 10;
+  user-select: none;
+  transition: left 0.1s ease;
+}
+
+.divider-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--gray-300);
+  transform: translateX(-50%);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.divider-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  background: var(--white);
+  border: 2px solid var(--gray-300);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  transition: all 0.2s ease;
+  cursor: ew-resize;
+}
+
+.divider-handle:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lg);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.handle-arrows {
+  display: flex;
+  gap: 1px;
+  font-size: 10px;
+  color: var(--gray-500);
+  font-weight: bold;
+  line-height: 1;
+}
+
+.divider-handle:hover .handle-arrows {
+  color: var(--accent);
+}
+
 @media (max-width: 768px) {
-  .comparison-grid {
-    flex-direction: column;
-    gap: 2rem;
-    align-items: center;
-  }
-  
-  .comparison-side {
-    min-width: auto;
+  .comparison-slider-container {
     width: 100%;
-    max-width: 100%;
+    max-width: 400px;
+    height: 550px;
+    margin: 2rem auto;
   }
   
-  .vs-divider {
-    order: 2;
-    margin: 1rem 0;
+  .comparison-content-static {
     width: 100%;
+    height: 550px;
   }
   
-  .vs-divider::before {
-    width: 200px;
-    height: 3px;
-    background: linear-gradient(90deg, transparent 0%, var(--accent) 20%, var(--accent) 80%, transparent 100%);
+  .comparison-side-static {
+    width: 100%;
+    height: 550px;
+    padding: 2rem 1.25rem;
+  }
+}
+  
+  .comparison-side-static h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
   }
   
-  .comparison-side.traditional {
-    order: 1;
+  .comparison-item {
+    padding: 0.75rem;
+    gap: 0.75rem;
   }
   
-  .comparison-side.marijn {
-    order: 3;
+  .comparison-item .icon {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.25rem;
   }
   
-  .comparison-item:hover {
-    transform: translateY(-2px);
+  .comparison-item strong {
+    font-size: 1rem;
+  }
+  
+  .comparison-item p {
+    font-size: 0.9rem;
   }
 }
 
@@ -2404,6 +2597,22 @@ footer p {
   
   .comparison-item p {
     font-size: 0.9rem;
+  }
+  
+  .comparison-arrow {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+  
+  .comparison-dot {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .swipe-indicator {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
   }
 }
 

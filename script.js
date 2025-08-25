@@ -480,3 +480,103 @@ function initFAQAccordion() {
 
 // Initialize FAQ accordion when DOM is loaded
 document.addEventListener('DOMContentLoaded', initFAQAccordion);
+
+// Badge shine animation on first view
+function initBadgeShine() {
+  const badges = document.querySelectorAll('.hero-badge, .intro-badge');
+  
+  const badgeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.classList.contains('shine-seen')) {
+        entry.target.classList.add('visible');
+        entry.target.classList.add('shine-seen');
+        
+        // Remove the visible class after animation completes
+        setTimeout(() => {
+          entry.target.classList.remove('visible');
+        }, 600);
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+  
+  badges.forEach(badge => badgeObserver.observe(badge));
+}
+
+// Initialize badge shine when DOM is loaded
+document.addEventListener('DOMContentLoaded', initBadgeShine);
+
+// Before/After Comparison Slider with Draggable Divider
+function initComparisonSlider() {
+  const divider = document.getElementById('comparisonDivider');
+  const topLayer = document.querySelector('.rinck-side');
+  const container = document.querySelector('.comparison-content-static');
+  
+  if (!divider || !topLayer || !container) return;
+  
+  let isDragging = false;
+  let containerRect;
+  
+  // Update the clip-path and divider position based on percentage
+  function updateComparison(percentage) {
+    const rightClip = 100 - percentage;
+    topLayer.style.clipPath = `inset(0 ${rightClip}% 0 0)`;
+    divider.style.left = `${percentage}%`;
+  }
+  
+  // Get percentage from mouse/touch position
+  function getPercentageFromPosition(clientX) {
+    if (!containerRect) containerRect = container.getBoundingClientRect();
+    const relativeX = clientX - containerRect.left;
+    const percentage = Math.max(0, Math.min(100, (relativeX / containerRect.width) * 100));
+    return percentage;
+  }
+  
+  // Mouse events
+  divider.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    containerRect = container.getBoundingClientRect();
+    document.body.style.cursor = 'ew-resize';
+    e.preventDefault();
+  });
+  
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const percentage = getPercentageFromPosition(e.clientX);
+    updateComparison(percentage);
+  });
+  
+  document.addEventListener('mouseup', () => {
+    isDragging = false;
+    document.body.style.cursor = '';
+    containerRect = null;
+  });
+  
+  // Touch events for mobile
+  divider.addEventListener('touchstart', (e) => {
+    isDragging = true;
+    containerRect = container.getBoundingClientRect();
+    e.preventDefault();
+  });
+  
+  document.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const touch = e.touches[0];
+    const percentage = getPercentageFromPosition(touch.clientX);
+    updateComparison(percentage);
+    e.preventDefault();
+  });
+  
+  document.addEventListener('touchend', () => {
+    isDragging = false;
+    containerRect = null;
+  });
+  
+  // Set initial state (50%)
+  updateComparison(50);
+}
+
+// Initialize comparison slider when DOM is loaded
+document.addEventListener('DOMContentLoaded', initComparisonSlider);
+
