@@ -1,6 +1,107 @@
 // Enhanced JavaScript for Marijn Rinck website
 document.addEventListener('DOMContentLoaded', function() {
   
+  // Mouse drag functionality for service cards
+  function initializeServiceCarousel() {
+    const carousel = document.querySelector('.services-carousel');
+    if (!carousel) return;
+    
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    
+    carousel.addEventListener('mousedown', (e) => {
+      isDown = true;
+      carousel.style.cursor = 'grabbing';
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+    });
+    
+    carousel.addEventListener('mouseleave', () => {
+      isDown = false;
+      carousel.style.cursor = 'grab';
+    });
+    
+    carousel.addEventListener('mouseup', () => {
+      isDown = false;
+      carousel.style.cursor = 'grab';
+    });
+    
+    carousel.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 2;
+      carousel.scrollLeft = scrollLeft - walk;
+    });
+  }
+  
+  initializeServiceCarousel();
+  
+  // Enhanced carousel navigation
+  function initializeCarouselNavigation() {
+    const carousel = document.querySelector('.services-carousel');
+    const dotsContainer = document.querySelector('.carousel-dots');
+    const prevBtn = document.querySelector('.carousel-prev');
+    const nextBtn = document.querySelector('.carousel-next');
+    
+    if (!carousel || !dotsContainer || !prevBtn || !nextBtn) return;
+    
+    const cards = carousel.querySelectorAll('.service-point');
+    const cardCount = cards.length;
+    let currentIndex = 0;
+    
+    // Create dots
+    for (let i = 0; i < cardCount; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot';
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => scrollToCard(i));
+      dotsContainer.appendChild(dot);
+    }
+    
+    const dots = dotsContainer.querySelectorAll('.carousel-dot');
+    
+    function scrollToCard(index) {
+      const cardWidth = cards[0].offsetWidth + 24; // card width + gap
+      carousel.scrollTo({
+        left: cardWidth * index,
+        behavior: 'smooth'
+      });
+      updateActiveDot(index);
+      currentIndex = index;
+    }
+    
+    function updateActiveDot(index) {
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    }
+    
+    // Navigation buttons
+    prevBtn.addEventListener('click', () => {
+      const newIndex = currentIndex > 0 ? currentIndex - 1 : cardCount - 1;
+      scrollToCard(newIndex);
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      const newIndex = currentIndex < cardCount - 1 ? currentIndex + 1 : 0;
+      scrollToCard(newIndex);
+    });
+    
+    // Update active dot on scroll
+    carousel.addEventListener('scroll', () => {
+      const cardWidth = cards[0].offsetWidth + 24;
+      const newIndex = Math.round(carousel.scrollLeft / cardWidth);
+      if (newIndex !== currentIndex && newIndex >= 0 && newIndex < cardCount) {
+        currentIndex = newIndex;
+        updateActiveDot(currentIndex);
+      }
+    });
+  }
+  
+  initializeCarouselNavigation();
+  
   // Navbar scroll effect
   const navbar = document.querySelector('.navbar');
   let lastScrollY = window.scrollY;
