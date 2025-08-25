@@ -249,7 +249,7 @@ a {
 /* Hero Section - Clean Structure */
 .hero {
   background: linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
-  padding: 100px 0 60px;
+  padding: 100px 0 80px;
   position: relative;
 }
 
@@ -277,7 +277,7 @@ a {
 }
 
 .hero-content {
-  padding: 0 2rem;
+  padding: 0 2rem 4rem;
   position: relative;
   z-index: 2;
   animation: heroSlideIn 1.2s ease-out;
@@ -655,9 +655,10 @@ a {
 .services-showcase {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
   color: var(--white);
-  padding: 8rem 0;
+  padding: 6rem 0 8rem;
   position: relative;
   overflow: hidden;
+  margin-top: 0;
 }
 
 .services-showcase::before {
@@ -2018,7 +2019,7 @@ footer p {
 /* Mobile Hero - Clean Structure */
 @media (max-width: 768px) {
   .hero {
-    padding: 80px 0 0;
+    padding: 80px 0 60px;
   }
   
   .hero-container {
@@ -2030,7 +2031,7 @@ footer p {
   
   .hero-content {
     order: 2;
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.5rem 4rem;
     text-align: center;
   }
   
@@ -2053,9 +2054,10 @@ footer p {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center top;
     border-radius: 16px;
     border: 3px solid var(--white);
-    box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
     display: block;
   }
   
@@ -2093,6 +2095,23 @@ footer p {
     right: auto !important;
     animation: floatMobileCenter 6s ease-in-out infinite;
     animation-delay: 4s;
+  }
+  
+  .hero-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    margin: 1.5rem 0;
+  }
+  
+  .stat {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .hero-buttons {
