@@ -246,25 +246,21 @@ a {
   }
 }
 
-/* Hero Section */
+/* Hero Section - Clean Structure */
 .hero {
-  min-height: 90vh;
   background: linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
-  overflow: hidden;
-  position: relative;
   padding: 100px 0 60px;
-  width: 100%;
+  position: relative;
 }
 
 .hero-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  max-width: 1400px;
-  margin: 0 auto;
   gap: 4rem;
-  padding: 0 2rem;
-  position: relative;
 }
 
 .hero::before {
@@ -474,6 +470,7 @@ a {
   z-index: 2;
 }
 
+/* Desktop floating elements container */
 .floating-elements {
   position: absolute;
   top: 0;
@@ -504,21 +501,22 @@ a {
   transform: scale(1.05);
 }
 
+/* Desktop floating card positions */
 .floating-card.contract {
-  top: 5%;
-  right: 10%;
+  top: 20%;
+  right: 12%;
   animation-delay: 0s;
 }
 
 .floating-card.funding {
-  bottom: 25%;
-  left: 5%;
+  bottom: 35%;
+  left: 12%;
   animation-delay: 2s;
 }
 
 .floating-card.ip {
-  bottom: 10%;
-  right: 15%;
+  bottom: 20%;
+  right: 18%;
   animation-delay: 4s;
 }
 
@@ -528,6 +526,24 @@ a {
   }
   50% {
     transform: translateY(-20px) rotate(2deg);
+  }
+}
+
+@keyframes floatMobile {
+  0%, 100% {
+    transform: scale(0.7) translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: scale(0.7) translateY(-15px) rotate(1deg);
+  }
+}
+
+@keyframes floatMobileCenter {
+  0%, 100% {
+    transform: translateX(-50%) scale(0.7) translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateX(-50%) scale(0.7) translateY(-15px) rotate(1deg);
   }
 }
 
@@ -612,13 +628,16 @@ a {
 
 @media (max-width: 640px) {
   .hero-buttons {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.8rem;
   }
   
-  .btn {
-    width: 100%;
-    max-width: 280px;
+  .hero-buttons .btn {
+    flex: 1;
+    max-width: 150px;
+    font-size: 0.85rem;
+    padding: 0.7rem 0.8rem;
   }
 }
 
@@ -1996,65 +2015,108 @@ footer p {
   }
 }
 
+/* Mobile Hero - Clean Structure */
 @media (max-width: 768px) {
   .hero {
-    padding: 80px 0 40px;
-    min-height: auto;
+    padding: 80px 0 0;
   }
   
   .hero-container {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 0;
   }
   
   .hero-content {
-    padding: 0 1rem;
-    order: 1;
-    max-width: 100%;
-  }
-  
-  .hero-visual {
-    min-height: 400px;
     order: 2;
-    padding: 0 1rem;
-  }
-  
-  .hero-image-professional {
-    max-width: 350px;
-    height: 450px;
-    margin: 0 auto;
-  }
-  
-  .professional-placeholder {
-    width: 220px;
-    height: 280px;
-  }
-  
-  .hero-stats {
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 1.5rem 0;
-  }
-  
-  .stat {
-    align-items: center;
+    padding: 2rem 1.5rem;
     text-align: center;
   }
   
+  .hero-visual {
+    order: 1;
+    width: 100vw;
+    height: 300px;
+    margin-left: calc(-50vw + 50%);
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .hero-image-professional {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .hero-image-professional img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 3px solid var(--white);
+    box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.2);
+    display: block;
+  }
+  
+  /* Mobile floating card overrides */
   .floating-card {
-    position: static;
-    margin: 0.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+  }
+  
+  .floating-card.contract {
+    top: 25px !important;
+    left: 25px !important;
+    right: auto !important;
+    bottom: auto !important;
+    animation: floatMobile 6s ease-in-out infinite;
+    animation-delay: 0s;
+  }
+  
+  .floating-card.funding {
+    top: 25px !important;
+    right: 25px !important;
+    left: auto !important;
+    bottom: auto !important;
+    animation: floatMobile 6s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+  
+  .floating-card.ip {
+    bottom: 25px !important;
+    left: 50% !important;
+    top: auto !important;
+    right: auto !important;
+    animation: floatMobileCenter 6s ease-in-out infinite;
+    animation-delay: 4s;
+  }
+  
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+  .hero-buttons .btn {
+    flex: 1;
+    max-width: 170px;
+  }
     animation: none;
   }
   
+  /* Mobile floating elements container */
   .floating-elements {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: -2rem;
-    margin-bottom: 2rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
     z-index: 4;
   }
   
