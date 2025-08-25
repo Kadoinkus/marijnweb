@@ -206,30 +206,36 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // Enhanced button hover effects
+  // Enhanced button hover effects (only on non-touch devices)
   const buttons = document.querySelectorAll('.btn');
   buttons.forEach(button => {
-    button.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateY(-2px)';
-    });
-    
-    button.addEventListener('mouseleave', function() {
-      this.style.transform = 'translateY(0)';
-    });
+    // Only add hover effects on devices that support hover (non-touch)
+    if (window.matchMedia('(hover: hover)').matches) {
+      button.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px)';
+      });
+      
+      button.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    }
   });
   
-  // Card hover effects with stagger animation
+  // Card hover effects with stagger animation (only on non-touch devices)
   const cards = document.querySelectorAll('.card, .package');
   cards.forEach((card, index) => {
     card.style.animationDelay = `${index * 0.1}s`;
     
-    card.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateY(-8px)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-      this.style.transform = 'translateY(0)';
-    });
+    // Only add hover effects on devices that support hover (non-touch)
+    if (window.matchMedia('(hover: hover)').matches) {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-8px)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    }
   });
   
   // Form validation and enhancement

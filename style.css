@@ -504,20 +504,20 @@ a {
 
 /* Desktop floating card positions */
 .floating-card.contract {
-  top: 20%;
-  right: 12%;
+  top: 15%;
+  right: 5%;
   animation-delay: 0s;
 }
 
 .floating-card.funding {
-  bottom: 35%;
-  left: 12%;
+  bottom: 40%;
+  left: 5%;
   animation-delay: 2s;
 }
 
 .floating-card.ip {
-  bottom: 20%;
-  right: 18%;
+  bottom: 15%;
+  right: 8%;
   animation-delay: 4s;
 }
 
@@ -599,8 +599,10 @@ a {
   transition: left 0.5s ease;
 }
 
-.btn:hover::before {
-  left: 100%;
+@media (hover: hover) {
+  .btn:hover::before {
+    left: 100%;
+  }
 }
 
 .btn.primary {
@@ -609,10 +611,12 @@ a {
   box-shadow: var(--shadow-md);
 }
 
-.btn.primary:hover {
-  background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+@media (hover: hover) {
+  .btn.primary:hover {
+    background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
 }
 
 .btn.secondary {
@@ -621,10 +625,12 @@ a {
   border: 2px solid var(--primary);
 }
 
-.btn.secondary:hover {
-  background: var(--primary);
-  color: var(--white);
-  transform: translateY(-2px);
+@media (hover: hover) {
+  .btn.secondary:hover {
+    background: var(--primary);
+    color: var(--white);
+    transform: translateY(-2px);
+  }
 }
 
 @media (max-width: 640px) {
@@ -1034,7 +1040,7 @@ a {
   padding: 1.5rem 1.25rem;
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-sm);
-  transition: var(--transition);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
   position: relative;
   border: 1px solid var(--gray-200);
   overflow: hidden;
@@ -1043,6 +1049,13 @@ a {
   width: 280px;
   flex-shrink: 0;
   flex-grow: 0;
+}
+
+/* Add transform transitions only for hover-capable devices */
+@media (hover: hover) {
+  .card {
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  }
 }
 
 .card-icon {
@@ -1135,18 +1148,23 @@ a {
   pointer-events: none;
 }
 
-.card:hover::before {
-  transform: scaleX(1);
+@media (hover: hover) {
+  .card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .card:hover::after {
+    opacity: 1;
+  }
 }
 
-.card:hover::after {
-  opacity: 1;
-}
-
-.card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--shadow-xl);
-  border-color: var(--accent);
+/* Disable card hover effects on touch devices to prevent scaling issues */
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--accent);
+  }
 }
 
 .card h3 {
@@ -2560,6 +2578,9 @@ footer p {
   color: var(--gray-600);
   margin: 0;
   line-height: 1.5;
+  min-height: 2.85rem; /* Space for 2 lines: 1.5 line-height * 0.95rem font-size * 2 lines */
+  display: flex;
+  align-items: flex-start;
 }
 
 .vs-divider {
@@ -2706,6 +2727,9 @@ footer p {
   color: var(--gray-600);
   margin: 0;
   line-height: 1.5;
+  min-height: 2.85rem; /* Space for 2 lines: 1.5 line-height * 0.95rem font-size * 2 lines */
+  display: flex;
+  align-items: flex-start;
 }
 
 /* Vertical Divider with Drag Handle */
@@ -2776,7 +2800,7 @@ footer p {
     position: relative;
     width: 100%;
     max-width: 400px;
-    height: 550px;
+    height: 600px;
     margin: 2rem auto;
     border-radius: var(--border-radius-lg);
     overflow: hidden;
@@ -2786,7 +2810,7 @@ footer p {
     display: block; /* Override desktop display: contents */
     position: relative;
     width: 100%;
-    height: 550px;
+    height: 600px;
   }
   
   .comparison-side-static {
@@ -2794,7 +2818,7 @@ footer p {
     top: 0;
     left: 0;
     width: 100%;
-    height: 550px;
+    height: 600px;
     padding: 2rem 1.25rem;
     box-sizing: border-box;
     box-shadow: none; /* Remove desktop shadow */
@@ -2843,6 +2867,7 @@ footer p {
   
   .comparison-item p {
     font-size: 0.9rem;
+    min-height: 2.7rem; /* Adjusted for smaller mobile font size */
   }
 }
 
@@ -2868,6 +2893,7 @@ footer p {
   
   .comparison-item p {
     font-size: 0.9rem;
+    min-height: 2.7rem; /* Adjusted for smaller mobile font size */
   }
   
   .comparison-arrow {
