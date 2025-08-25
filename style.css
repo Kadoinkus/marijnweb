@@ -2016,6 +2016,23 @@ footer p {
   }
 }
 
+/* About Section Responsive */
+@media (max-width: 768px) {
+  .about-content {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  
+  .about-content > div:first-child {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .about-content img {
+    height: 250px !important;
+  }
+}
+
 /* Mobile Hero - Clean Structure */
 @media (max-width: 768px) {
   .hero {
