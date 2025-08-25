@@ -291,15 +291,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // Parallax effect for hero section
-  const hero = document.querySelector('.hero');
-  if (hero) {
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      const rate = scrolled * -0.5;
-      hero.style.transform = `translateY(${rate}px)`;
-    });
-  }
+  // Parallax effect for hero section (disabled to prevent white space)
+  // const hero = document.querySelector('.hero');
+  // if (hero) {
+  //   window.addEventListener('scroll', () => {
+  //     const scrolled = window.pageYOffset;
+  //     const rate = scrolled * -0.5;
+  //     hero.style.transform = `translateY(${rate}px)`;
+  //   });
+  // }
   
   // Loading animation for images
   const images = document.querySelectorAll('img');

@@ -249,7 +249,7 @@ a {
 /* Hero Section - Clean Structure */
 .hero {
   background: linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
-  padding: 100px 0 80px;
+  padding: 100px 0 120px;
   position: relative;
 }
 
@@ -277,7 +277,7 @@ a {
 }
 
 .hero-content {
-  padding: 0 2rem 4rem;
+  padding: 0 2rem 8rem;
   position: relative;
   z-index: 2;
   animation: heroSlideIn 1.2s ease-out;
@@ -655,7 +655,7 @@ a {
 .services-showcase {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
   color: var(--white);
-  padding: 6rem 0 8rem;
+  padding: 0 0 8rem;
   position: relative;
   overflow: hidden;
   margin-top: 0;
@@ -685,6 +685,7 @@ a {
 .services-intro {
   text-align: center;
   margin-bottom: 5rem;
+  padding-top: 6rem;
 }
 
 .intro-badge {
@@ -941,7 +942,7 @@ a {
 
 @media (max-width: 768px) {
   .services-showcase {
-    padding: 6rem 0;
+    padding: 0 0 6rem;
   }
   
   .services-container {
@@ -950,6 +951,7 @@ a {
   
   .services-intro {
     margin-bottom: 3rem;
+    padding-top: 4rem;
   }
   
   .services-layout {
@@ -2070,17 +2072,7 @@ footer p {
   }
   
   .services-carousel::-webkit-scrollbar {
-    height: 6px;
-  }
-  
-  .services-carousel::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
-  }
-  
-  .services-carousel::-webkit-scrollbar-thumb {
-    background: var(--accent);
-    border-radius: 3px;
+    display: none;
   }
   
   
@@ -2155,7 +2147,7 @@ footer p {
 /* Mobile Hero - Clean Structure */
 @media (max-width: 768px) {
   .hero {
-    padding: 80px 0 60px;
+    padding: 80px 0 100px;
   }
   
   .hero-container {
@@ -2167,7 +2159,7 @@ footer p {
   
   .hero-content {
     order: 2;
-    padding: 2rem 1.5rem 4rem;
+    padding: 2rem 1.5rem 8rem;
     text-align: center;
   }
   
