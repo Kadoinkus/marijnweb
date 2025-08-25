@@ -41,6 +41,88 @@ document.addEventListener('DOMContentLoaded', function() {
   
   initializeServiceCarousel();
   
+  // Mouse drag functionality for general cards sections
+  function initializeCardsCarousel() {
+    const cardsContainers = document.querySelectorAll('.cards');
+    
+    cardsContainers.forEach(cards => {
+      // Skip if it's not on mobile or doesn't have the horizontal scroll
+      const hasHorizontalScroll = window.getComputedStyle(cards).overflowX === 'auto';
+      if (!hasHorizontalScroll) return;
+      
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+      
+      cards.addEventListener('mousedown', (e) => {
+        isDown = true;
+        cards.style.cursor = 'grabbing';
+        startX = e.pageX - cards.offsetLeft;
+        scrollLeft = cards.scrollLeft;
+      });
+      
+      cards.addEventListener('mouseleave', () => {
+        isDown = false;
+        cards.style.cursor = 'grab';
+      });
+      
+      cards.addEventListener('mouseup', () => {
+        isDown = false;
+        cards.style.cursor = 'grab';
+      });
+      
+      cards.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - cards.offsetLeft;
+        const walk = (x - startX) * 2;
+        cards.scrollLeft = scrollLeft - walk;
+      });
+    });
+  }
+  
+  initializeCardsCarousel();
+  
+  // Mouse drag functionality for why-cards section
+  function initializeWhyCardsCarousel() {
+    const whyCardsContainer = document.querySelector('.why-cards-container');
+    if (!whyCardsContainer) return;
+    
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    
+    whyCardsContainer.addEventListener('mousedown', (e) => {
+      isDown = true;
+      whyCardsContainer.style.cursor = 'grabbing';
+      startX = e.pageX - whyCardsContainer.offsetLeft;
+      scrollLeft = whyCardsContainer.scrollLeft;
+    });
+    
+    whyCardsContainer.addEventListener('mouseleave', () => {
+      isDown = false;
+      whyCardsContainer.style.cursor = 'grab';
+    });
+    
+    whyCardsContainer.addEventListener('mouseup', () => {
+      isDown = false;
+      whyCardsContainer.style.cursor = 'grab';
+    });
+    
+    whyCardsContainer.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - whyCardsContainer.offsetLeft;
+      const walk = (x - startX) * 2;
+      whyCardsContainer.scrollLeft = scrollLeft - walk;
+    });
+    
+    // Set initial cursor style
+    whyCardsContainer.style.cursor = 'grab';
+  }
+  
+  initializeWhyCardsCarousel();
+  
   // Enhanced carousel navigation
   function initializeCarouselNavigation() {
     const carousel = document.querySelector('.services-carousel');
@@ -123,6 +205,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // Reinitialize carousel on window resize
   window.addEventListener('resize', () => {
     initializeServiceCarousel();
+    initializeCardsCarousel();
+    initializeWhyCardsCarousel();
     // Reset to first card on resize to avoid positioning issues
     const carousel = document.querySelector('.services-carousel');
     if (carousel) {
