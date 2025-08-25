@@ -301,17 +301,25 @@ document.addEventListener('DOMContentLoaded', function() {
   //   });
   // }
   
-  // Loading animation for images
-  const images = document.querySelectorAll('img');
+  // Loading animation for images (excluding hero image)
+  const images = document.querySelectorAll('img:not(.hero-image-professional img)');
   images.forEach(img => {
-    img.addEventListener('load', function() {
-      this.style.opacity = '1';
-      this.style.transform = 'scale(1)';
-    });
+    // Check if image is already loaded
+    if (img.complete && img.naturalHeight !== 0) {
+      // Image is already loaded
+      img.style.opacity = '1';
+      img.style.transform = 'scale(1)';
+    } else {
+      // Image is still loading
+      img.style.opacity = '0';
+      img.style.transform = 'scale(1.05)';
+      
+      img.addEventListener('load', function() {
+        this.style.opacity = '1';
+        this.style.transform = 'scale(1)';
+      });
+    }
     
-    // Set initial styles
-    img.style.opacity = '0';
-    img.style.transform = 'scale(1.05)';
     img.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
   });
   
